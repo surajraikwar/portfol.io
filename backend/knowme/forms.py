@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from knowme.models import Account
+from knowme.models import Account, Project
 from django.contrib.auth import authenticate
 
 
@@ -26,3 +26,10 @@ class LoginForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError('Invalid Credentials')
+
+
+class ProjectForm(forms.ModelForm):
+
+    class Meta:
+        model = Project
+        fields = ('project_name', 'description', 'google_cloud_link')

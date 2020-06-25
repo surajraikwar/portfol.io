@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from knowme.forms import RegistrationForm, LoginForm
+from knowme.forms import RegistrationForm, LoginForm, ProjectForm
+from django.contrib.auth.decorators import login_required
+from .models import Account, Project
 
 
 def index(request):
@@ -56,3 +58,21 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+
+@login_required
+def add_projects_to_account(request, *args, **kwargs):
+
+    form = ProjectForm()
+    if request.POST:
+        form = ProjectForm(request.POST)
+        if form.is_valid:
+            project = form.save(commit=False)
+            project.account = request.user
+            project.save()
+
+        return redirect('index')
+
+    else:
+        form = ProjectForm()
+    return render(request, 'knowme/add_projects.html', {'form': form})

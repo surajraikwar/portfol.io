@@ -6,15 +6,11 @@ class AccountManager(BaseUserManager):
     def create_user(self, first_name, last_name, email, password=None):
         if not email:
             raise ValueError('Users must have an email address')
-        # if not username:
-            # raise ValueError('Users must have a username')
 
         user = self.model(
             first_name=first_name,
             last_name=last_name,
             email=self.normalize_email(email)
-
-            # username=username,
         )
 
         user.set_password(password)
@@ -27,7 +23,6 @@ class AccountManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             password=password,
-            # username=username,
         )
         user.is_admin = True
         user.is_staff = True
@@ -41,7 +36,6 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=20)
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     profile_pic = models.ImageField(upload_to='profile_pics')
-    # username 				= models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField(
         verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
@@ -58,11 +52,9 @@ class Account(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-        # For checking permissions. to keep it simple all admin have ALL permissons
     def has_perm(self, perm, obj=None):
         return self.is_admin
 
-        # Does this user have permission to view this app? (ALWAYS YES FOR SIMPLICITY)
     def has_module_perms(self, app_label):
         return True
 
