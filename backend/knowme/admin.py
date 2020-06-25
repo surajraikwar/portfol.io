@@ -1,5 +1,5 @@
 from django.contrib import admin
-from knowme.models import Profile, Project
+from .models import Account, Project
 
-admin.site.register(Profile)
+admin.site.register(Account)
 admin.site.register(Project)

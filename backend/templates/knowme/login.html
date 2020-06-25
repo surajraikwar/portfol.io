@@ -1,0 +1,25 @@
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div>
+      <h1>Register here</h1>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {% for field in login_form %}
+        <p>
+          {{field.label_tag}} {{field}}
+        </p>
+        {% endfor %} {% for errors in login_form.errors %}
+        <p>{{errors}}</p>
+        {% endfor %} {% if login_form.non_field_errors %}
+        <p>{{login_form.non_field_errors}}</p>
+        {% endif %}
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+  </body>
+</html>
