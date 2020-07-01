@@ -1,20 +1,64 @@
 <html lang="en">
   <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <style id="light">
+      body {
+        color: black;
+        background-color: white;
+      }
+    </style>
+    <style id="dark">
+      body {
+        color: white;
+        background-color: black;
+      }
+    </style>
   </head>
   <body>
+    <label><input type="radio" name="chooseStyle" value="light" />Light</label>
+    <label
+      ><input type="radio" name="chooseStyle" value="dark" checked />Dark</label
+    >
     {% if request.user.is_authenticated %}
-    <h3>
-      Hello, {{request.user.first_name}} |
-      <a href="{% url 'logout' %}"> logout</a>
-    </h3>
-    {% else %}
+    <h3>Hello, {{request.user.first_name}}</h3>
+    |
+
+    <a href="{% url 'knowme:add-project' %}">Add Project</a>
+    <a href="{% url 'logout' %}">Logout</a>
+
+    {% for project in projects %}
+    <li>
+      <ul>
+        <a href="{{project.google_cloud_link}}">{{project.project_name}}</a>
+        <img
+          src="./media/knowme/project_snaps/{{project.project_name}}.jpg"
+          alt="{{project.google_cloud_link}}"
+          width="400"
+          height="200"
+        />
+      </ul>
+    </li>
+    {% endfor %} {% else %}
     <a href="{% url 'knowme:login' %}">Login</a> |
     <a href="{% url 'knowme:register' %}">Register</a>
     {% endif %}
-    <h1>Welcome</h1>
-    <ul></ul>
+
+    <script>
+      (function () {
+        var styles = {
+          light: $("#light").detach(),
+          dark: $("#dark"),
+        };
+
+        $("input[name=chooseStyle]").click(function () {
+          var other = this.value === "light" ? "dark" : "light";
+          styles[this.value].appendTo("head");
+          styles[other].detach();
+        });
+      })();
+    </script>
   </body>
 </html>

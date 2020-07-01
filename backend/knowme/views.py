@@ -3,10 +3,20 @@ from django.contrib.auth import authenticate, login, logout
 from knowme.forms import RegistrationForm, LoginForm, ProjectForm
 from django.contrib.auth.decorators import login_required
 from .models import Account, Project
+import imgkit
 
 
-def index(request):
-    return render(request, template_name='knowme/index.html')
+def index(request, *args, **kwargs):
+    user = request.user
+    if user.is_authenticated:
+        user_projects = Project.objects.filter(account=user)
+
+        for project in user_projects:
+            imgkit.from_url(project.google_cloud_link,
+                            './media/knowme/project_snaps/{}.jpg'.format(project.project_name))
+        return render(request, 'knowme/index.html', {'projects': user_projects})
+    else:
+        return render(request, 'knowme/index.html')
 
 
 def registration_view(request):
@@ -60,7 +70,7 @@ def logout_view(request):
     return redirect('index')
 
 
-@login_required
+@ login_required
 def add_projects_to_account(request, *args, **kwargs):
 
     form = ProjectForm()
