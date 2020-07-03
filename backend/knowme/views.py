@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from knowme.forms import RegistrationForm, LoginForm, ProjectForm
+from knowme.forms import RegistrationForm, LoginForm, ProjectForm, UpdateAccountForm
 from django.contrib.auth.decorators import login_required
 from .models import Account, Project
 import imgkit
@@ -10,10 +10,6 @@ def index(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
         user_projects = Project.objects.filter(account=user)
-
-        for project in user_projects:
-            imgkit.from_url(project.google_cloud_link,
-                            './media/knowme/project_snaps/{}.jpg'.format(project.project_name))
         return render(request, 'knowme/index.html', {'projects': user_projects})
     else:
         return render(request, 'knowme/index.html')
@@ -70,14 +66,48 @@ def logout_view(request):
     return redirect('index')
 
 
+def portfolio(request):
+    user = request.user
+    if user.is_authenticated:
+        user_projects = Project.objects.filter(account=user)
+    return render(request, 'knowme/portfolio_template1.html', {'projects': user_projects, 'account': user})
+
+
+@login_required
+def update_account_details(request):
+    user = request.user
+    if request.POST:
+        form = UpdateAccountForm(request.POST, instance=request.user)
+        if form.is_valid:
+            form.save(commit=False)
+            if 'profile_pic' in request.FILES:
+                user.profile_pic = request.FILES['profile_pic']
+            password = form.cleaned_data.get('password1')
+            user.set_password(password)
+            form.save()
+            return redirect('index')
+    else:
+        form = UpdateAccountForm(
+            initial={
+                'first_name': request.user.first_name,
+                'last_name': request.user.last_name,
+            }
+        )
+
+    return render(request, 'knowme/update_profile.html', {'account_update_form': form})
+
+
 @ login_required
 def add_projects_to_account(request, *args, **kwargs):
 
     form = ProjectForm()
+    options = {'crop-h': '700', 'quiet': ''}
     if request.POST:
         form = ProjectForm(request.POST)
         if form.is_valid:
             project = form.save(commit=False)
+            imgkit.from_url(project.google_cloud_link,
+                            './media/knowme/project_snaps/{}.jpg'.format(project.project_name), options=options)
             project.account = request.user
             project.save()
 
@@ -86,3 +116,7 @@ def add_projects_to_account(request, *args, **kwargs):
     else:
         form = ProjectForm()
     return render(request, 'knowme/add_projects.html', {'form': form})
+
+
+def choose_template(request):
+    pass

@@ -1,0 +1,22 @@
+<h2>Update Profile</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in account_update_form %}
+    <p>
+        {{field.label_tag}}
+        {{field}}
+    </p>
+    {% endfor %}
+    {% for field in account_update_form %}
+
+    {% for error in field.errors %}
+    <p style="color: red;">{{error}}</p>
+    {% endfor %}
+    {% endfor %}
+    {% if account_update_form.non_field_errors %}
+    <div style="color: red;">
+        <p>{{account_update_form.non_field_errors}}</p>
+    </div>
+    {% endif %}
+    <button type="submit">Save changes</button>
+</form>

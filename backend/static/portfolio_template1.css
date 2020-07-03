@@ -1,0 +1,404 @@
+/** Colors **/
+/** Typography **/
+/** Mixins **/
+/** =Extends **/
+.project__graphics:before, .project__graphics:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.button__part {
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/** Generic **/
+html {
+  font-size: 16px;
+}
+
+body {
+  height: 100%;
+  background: #2d2d2f;
+  color: #212121;
+  font-size: 1rem;
+  font-family: Helvetica, Helvetica Neue, Arial, sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-transition: background-color 0.4s linear;
+  transition: background-color 0.4s linear;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+}
+
+/* =Layout */
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* =Project Slides */
+.projects {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.project {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.project__graphics {
+  position: relative;
+  width: 224px;
+  height: 224px;
+  margin: 0 auto;
+  border-radius: 100%;
+  z-index: 5;
+}
+.project__graphics:before {
+  top: -5px;
+  left: -5px;
+  z-index: 2;
+}
+.project__graphics:after {
+  bottom: -6px;
+  right: -6px;
+  z-index: 3;
+}
+.project__image {
+  display: block;
+  position: relative;
+  width: 224px;
+  border-radius: 100%;
+  z-index: 4;
+}
+.project__loader {
+  width: 224px;
+  height: 224px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  opacity: 0.7;
+  z-index: 5;
+}
+.project__title {
+  margin: 20px 0 0;
+  font-size: 1.875rem;
+  text-transform: uppercase;
+}
+@media (min-width: 740px) {
+  .project__title {
+    font-size: 50px;
+  }
+}
+.project__subtitle {
+  margin: 0;
+  font-size: 1rem;
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+/** Pixel Art Component **/
+.pixel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  z-index: 3;
+  /* Container for all pixels */
+  /* State classes for size and color */
+  /* Unique positioning for each pixel */
+}
+.pixel-container {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 100%);
+          transform: translate(-50%, 100%);
+  z-index: 1;
+}
+.pixel.is-small {
+  width: 5px;
+  height: 5px;
+}
+.pixel.is-medium {
+  width: 15px;
+  height: 15px;
+}
+.pixel.is-large {
+  width: 30px;
+  height: 30px;
+}
+.pixel-01 {
+  left: 100px;
+  top: -92px;
+}
+.pixel-02 {
+  left: 113px;
+  top: -47px;
+}
+.pixel-03 {
+  left: 152px;
+  top: -74px;
+}
+.pixel-04 {
+  left: 136px;
+  top: -91px;
+}
+.pixel-05 {
+  left: 159px;
+  top: -42px;
+}
+.pixel-06 {
+  left: 158px;
+  top: -93px;
+}
+.pixel-07 {
+  left: 196px;
+  top: -10px;
+}
+.pixel-08 {
+  left: 136px;
+  top: -8px;
+}
+.pixel-09 {
+  left: 176px;
+  top: -32px;
+}
+.pixel-10 {
+  left: 116px;
+  top: -84px;
+}
+.pixel-11 {
+  left: -127px;
+  top: -121px;
+}
+.pixel-12 {
+  left: -156px;
+  top: -44px;
+}
+.pixel-13 {
+  left: -139px;
+  top: -12px;
+}
+.pixel-14 {
+  left: -126px;
+  top: -80px;
+}
+.pixel-15 {
+  left: -106px;
+  top: -4px;
+}
+.pixel-16 {
+  left: -196px;
+  top: -64px;
+}
+.pixel-17 {
+  left: -176px;
+  top: -88px;
+}
+.pixel-18 {
+  left: -186px;
+  top: -52px;
+}
+.pixel-19 {
+  left: -166px;
+  top: -48px;
+}
+.pixel-20 {
+  left: -125px;
+  top: -8px;
+}
+
+/** =Button (Primary CTA) **/
+.button {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 150px;
+  margin: 0 auto;
+  padding: 8px 0;
+  text-decoration: none;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.button-container {
+  position: relative;
+}
+.button__part--left {
+  border: 1px solid;
+  border-right: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.button__part--mid {
+  left: 50px;
+  border: 1px solid;
+  border-left: 0;
+  border-right: 0;
+}
+.button__part--right {
+  left: auto;
+  right: 0;
+  border: 1px solid;
+  border-left: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/** =Themes **/
+.theme-00 .project__graphics:before {
+  background: rgba(251, 24, 66, 0.8);
+}
+.theme-00 .project__graphics:after {
+  background: rgba(162, 16, 58, 0.3);
+}
+.theme-00 .project__subtitle {
+  color: rgba(253, 250, 196, 0.3);
+}
+.theme-00 .project__title {
+  color: #fdfac4;
+}
+.theme-00 .button {
+  color: #f2ecbf;
+}
+.theme-00 .button__part {
+  border-color: #f2ecbf;
+}
+.theme-00 .pixel.is-small {
+  background: rgba(253, 250, 196, 0.1);
+}
+.theme-00 .pixel.is-medium {
+  background: rgba(253, 250, 196, 0.3);
+}
+.theme-00 .pixel.is-large {
+  background: rgba(253, 250, 196, 0.6);
+}
+
+/** =Merry Christmallax Theme **/
+.theme-01 .project__graphics:before {
+  background: rgba(242, 236, 191, 0.8);
+}
+.theme-01 .project__graphics:after {
+  background: rgba(121, 140, 29, 0.3);
+}
+.theme-01 .project__subtitle {
+  color: rgba(242, 236, 191, 0.3);
+}
+.theme-01 .project__title {
+  color: #f2ecbf;
+}
+.theme-01 .button {
+  color: #f2ecbf;
+}
+.theme-01 .button__part {
+  border-color: #f2ecbf;
+}
+.theme-01 .pixel.is-small {
+  background: rgba(242, 236, 191, 0.1);
+}
+.theme-01 .pixel.is-medium {
+  background: rgba(242, 236, 191, 0.3);
+}
+.theme-01 .pixel.is-large {
+  background: rgba(242, 236, 191, 0.6);
+}
+
+/** =Gameboy Theme **/
+.theme-02 .project__graphics:before {
+  background: rgba(88, 95, 116, 0.8);
+}
+.theme-02 .project__graphics:after {
+  background: rgba(40, 44, 27, 0.3);
+}
+.theme-02 .project__subtitle {
+  color: rgba(88, 95, 116, 0.3);
+}
+.theme-02 .project__title {
+  color: #282c1b;
+}
+.theme-02 .button {
+  color: white;
+}
+.theme-02 .button__part {
+  border-color: white;
+}
+.theme-02 .pixel.is-small {
+  background: rgba(88, 95, 116, 0.1);
+}
+.theme-02 .pixel.is-medium {
+  background: rgba(88, 95, 116, 0.3);
+}
+.theme-02 .pixel.is-large {
+  background: rgba(88, 95, 116, 0.6);
+}
+
+/** =SVG Christmas Theme **/
+.theme-03 .project__graphics:before {
+  background: rgba(255, 183, 0, 0.8);
+}
+.theme-03 .project__graphics:after {
+  background: rgba(235, 93, 71, 0.3);
+}
+.theme-03 .project__subtitle {
+  color: rgba(72, 53, 51, 0.3);
+}
+.theme-03 .project__title {
+  color: #483533;
+}
+.theme-03 .button {
+  color: white;
+}
+.theme-03 .button__part {
+  border-color: white;
+}
+.theme-03 .pixel.is-small {
+  background: rgba(72, 53, 51, 0.1);
+}
+.theme-03 .pixel.is-medium {
+  background: rgba(72, 53, 51, 0.3);
+}
+.theme-03 .pixel.is-large {
+  background: rgba(72, 53, 51, 0.6);
+}
+
+/** =Utility Classes **/
+.bg-theme-01 {
+  background-color: #4c5026;
+}
+
+.bg-theme-02 {
+  background-color: #a7b082;
+}
+
+.bg-theme-03 {
+  background-color: #988786;
+}
+
+.is-hidden {
+  display: none;
+}

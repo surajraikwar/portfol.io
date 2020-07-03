@@ -35,7 +35,8 @@ class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
-    profile_pic = models.ImageField(upload_to='profile_pics')
+    profile_pic = models.ImageField(
+        'Profile Picture', upload_to='knowme/profile_pics')
     date_joined = models.DateTimeField(
         verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)

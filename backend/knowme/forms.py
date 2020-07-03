@@ -4,6 +4,18 @@ from knowme.models import Account, Project
 from django.contrib.auth import authenticate
 
 
+class UpdateAccountForm(forms.ModelForm):
+
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Confirm Password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = Account
+        fields = ('first_name', 'last_name',
+                  'profile_pic', 'password1', 'password2')
+
+
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=60)
 
@@ -33,3 +45,7 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('project_name', 'description', 'google_cloud_link')
+
+        widgets = {
+            'google_cloud_link': forms.TextInput(attrs={'value': 'https://'}),
+        }

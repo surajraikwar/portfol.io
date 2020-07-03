@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>{{account.first_name}}'s KnowMe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="./static/portfolio_template1.css">
+
+  </head>
+
+  <body>
+
+    <body>
+      <div class="wrapper">
+        <div class="projects">
+          <div class="project theme-00">
+            <div class="project__graphics">
+              <img class="project__image" src="./media/{{account.profile_pic}}" alt="" />
+              <div class="pixel-container">
+                <div class="pixel pixel-01 is-small"></div>
+                <div class="pixel pixel-02 is-large"></div>
+                <div class="pixel pixel-03 is-medium"></div>
+                <div class="pixel pixel-04 is-medium"></div>
+                <div class="pixel pixel-05 is-small"></div>
+                <div class="pixel pixel-06 is-large"></div>
+                <div class="pixel pixel-07 is-small"></div>
+                <div class="pixel pixel-08 is-medium"></div>
+                <div class="pixel pixel-09 is-medium"></div>
+                <div class="pixel pixel-10 is-small"></div>
+                <div class="pixel pixel-11 is-medium"></div>
+                <div class="pixel pixel-12 is-small"></div>
+                <div class="pixel pixel-13 is-small"></div>
+                <div class="pixel pixel-14 is-medium"></div>
+                <div class="pixel pixel-15 is-small"></div>
+                <div class="pixel pixel-16 is-small"></div>
+                <div class="pixel pixel-17 is-large"></div>
+                <div class="pixel pixel-18 is-small"></div>
+                <div class="pixel pixel-19 is-medium"></div>
+                <div class="pixel pixel-20 is-large"></div>
+                <div class="pixel pixel-21 is-medium"></div>
+                <div class="pixel pixel-22 is-small"></div>
+              </div>
+            </div>
+            <h2 class="project__title">Hi, my name is {{account.first_name}}!</h2>
+            <p class="project__subtitle">and this is my portfolio</p>
+          </div>
+
+          {% for project in projects %}
+
+          <div class="project theme-01">
+            <div class="project__graphics">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                class="project__loader" x="0" y="0" viewBox="0 0 176.1 176.1" enable-background="new 0 0 176.1 176.1"
+                xml:space="preserve">
+                <circle fill="transparent" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="88.1" cy="88.1"
+                  r="87.1" />
+              </svg>
+
+              <img class="project__image" src="./media/knowme/project_snaps/{{project.project_name}}.jpg" alt=""
+                width="250" height="220" />
+              <div class="pixel-container">
+                <div class="pixel pixel-01 is-small"></div>
+                <div class="pixel pixel-02 is-large"></div>
+                <div class="pixel pixel-03 is-medium"></div>
+                <div class="pixel pixel-04 is-medium"></div>
+                <div class="pixel pixel-05 is-small"></div>
+                <div class="pixel pixel-06 is-large"></div>
+                <div class="pixel pixel-07 is-small"></div>
+                <div class="pixel pixel-08 is-medium"></div>
+                <div class="pixel pixel-09 is-medium"></div>
+                <div class="pixel pixel-10 is-small"></div>
+                <div class="pixel pixel-11 is-medium"></div>
+                <div class="pixel pixel-12 is-small"></div>
+                <div class="pixel pixel-13 is-small"></div>
+                <div class="pixel pixel-14 is-medium"></div>
+                <div class="pixel pixel-15 is-small"></div>
+                <div class="pixel pixel-16 is-small"></div>
+                <div class="pixel pixel-17 is-large"></div>
+                <div class="pixel pixel-18 is-small"></div>
+                <div class="pixel pixel-19 is-medium"></div>
+                <div class="pixel pixel-20 is-large"></div>
+                <div class="pixel pixel-21 is-medium"></div>
+                <div class="pixel pixel-22 is-small"></div>
+              </div>
+            </div>
+            <h2 class="project__title">{{project.project_name}}</h2>
+            <p class="button-container">
+              <a href="{{project.google_cloud_link}}" class="button">
+                <span class="button__part button__part--left"></span>
+                <span class="button__part button__part--mid"></span>
+                <span class="button__part button__part--right"></span>
+                <span class="button__text">View Project</span>
+              </a>
+            </p>
+            <p class="project__subtitle">{{project.description}}</p>
+
+          </div>
+          {% endfor %}
+          <!--<div class="project theme-02">
+            <div class="project__graphics">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                class="project__loader" x="0" y="0" viewBox="0 0 176.1 176.1" enable-background="new 0 0 176.1 176.1"
+                xml:space="preserve">
+                <circle fill="transparent" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="88.1" cy="88.1"
+                  r="87.1" />
+              </svg>
+              <img class="project__image" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/262582/gsp01_gameboy.png"
+                alt="Gameboy" />
+              <div class="pixel-container">
+                <div class="pixel pixel-01 is-small"></div>
+                <div class="pixel pixel-02 is-large"></div>
+                <div class="pixel pixel-03 is-medium"></div>
+                <div class="pixel pixel-04 is-medium"></div>
+                <div class="pixel pixel-05 is-small"></div>
+                <div class="pixel pixel-06 is-large"></div>
+                <div class="pixel pixel-07 is-small"></div>
+                <div class="pixel pixel-08 is-medium"></div>
+                <div class="pixel pixel-09 is-medium"></div>
+                <div class="pixel pixel-10 is-small"></div>
+                <div class="pixel pixel-11 is-medium"></div>
+                <div class="pixel pixel-12 is-small"></div>
+                <div class="pixel pixel-13 is-small"></div>
+                <div class="pixel pixel-14 is-medium"></div>
+                <div class="pixel pixel-15 is-small"></div>
+                <div class="pixel pixel-16 is-small"></div>
+                <div class="pixel pixel-17 is-large"></div>
+                <div class="pixel pixel-18 is-small"></div>
+                <div class="pixel pixel-19 is-medium"></div>
+                <div class="pixel pixel-20 is-large"></div>
+                <div class="pixel pixel-21 is-medium"></div>
+                <div class="pixel pixel-22 is-small"></div>
+              </div>
+            </div>
+            <h2 class="project__title">Happy 25th Birthday <br> Game Boy</h2>
+            <p class="button-container">
+              <a href="#" class="button">
+                <span class="button__part button__part--left"></span>
+                <span class="button__part button__part--mid"></span>
+                <span class="button__part button__part--right"></span>
+                <span class="button__text">View Project</span>
+              </a>
+            </p>
+            <p class="project__subtitle">superscrollorama in action</p>
+          </div>
+          <div class="project theme-03">
+            <div class="project__graphics">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                class="project__loader" x="0" y="0" viewBox="0 0 176.1 176.1" enable-background="new 0 0 176.1 176.1"
+                xml:space="preserve">
+                <circle fill="transparent" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="88.1" cy="88.1"
+                  r="87.1" />
+              </svg>
+              <img class="project__image"
+                src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/262582/gsp04_svg-christmas.png"
+                alt="Christmas tree with a star on top, lights draped across the branches, orgnamzes of various colors hanging, and lots of presents under the tree." />
+              <div class="pixel-container">
+                <div class="pixel pixel-01 is-small"></div>
+                <div class="pixel pixel-02 is-large"></div>
+                <div class="pixel pixel-03 is-medium"></div>
+                <div class="pixel pixel-04 is-medium"></div>
+                <div class="pixel pixel-05 is-small"></div>
+                <div class="pixel pixel-06 is-large"></div>
+                <div class="pixel pixel-07 is-small"></div>
+                <div class="pixel pixel-08 is-medium"></div>
+                <div class="pixel pixel-09 is-medium"></div>
+                <div class="pixel pixel-10 is-small"></div>
+                <div class="pixel pixel-11 is-medium"></div>
+                <div class="pixel pixel-12 is-small"></div>
+                <div class="pixel pixel-13 is-small"></div>
+                <div class="pixel pixel-14 is-medium"></div>
+                <div class="pixel pixel-15 is-small"></div>
+                <div class="pixel pixel-16 is-small"></div>
+                <div class="pixel pixel-17 is-large"></div>
+                <div class="pixel pixel-18 is-small"></div>
+                <div class="pixel pixel-19 is-medium"></div>
+                <div class="pixel pixel-20 is-large"></div>
+                <div class="pixel pixel-21 is-medium"></div>
+                <div class="pixel pixel-22 is-small"></div>
+              </div>
+            </div>
+            <h2 class="project__title">SVG Christmas</h2>
+            <p class="button-container">
+              <a href="#" class="button">
+                <span class="button__part button__part--left"></span>
+                <span class="button__part button__part--mid"></span>
+                <span class="button__part button__part--right"></span>
+                <span class="button__text">View Project</span>
+              </a>
+            </p>
+            <p class="project__subtitle">greensock in action</p>
+          </div>-->
+
+        </div>
+    </body>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSRulePlugin.min.js'></script>
+    <script src="./static/portfolio_template1.js"></script>
+
+  </body>
+  <script src="./static/portfolio_template1.js"></script>
+
+</html>
