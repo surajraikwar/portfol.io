@@ -36,7 +36,7 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=20)
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     profile_pic = models.ImageField(
-        'Profile Picture', upload_to='knowme/profile_pics')
+        'Profile Picture', upload_to='knowme/profile_pics', default='knowme/profile_pics/default.jpg')
     date_joined = models.DateTimeField(
         verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
@@ -49,6 +49,13 @@ class Account(AbstractBaseUser):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = AccountManager()
+
+    TEMPLATE_CHOICES = (
+        ('portfolio_template1.html', 'Template 1'),
+        ('portfolio_template2.html', 'Template 2')
+    )
+    portfolio_template = models.CharField(
+        max_length=100, choices=TEMPLATE_CHOICES, blank=True, null=True)
 
     def __str__(self):
         return self.email

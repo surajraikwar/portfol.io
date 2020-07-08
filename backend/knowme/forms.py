@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate
 
 
 class UpdateAccountForm(forms.ModelForm):
-
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Confirm Password', widget=forms.PasswordInput)
@@ -14,6 +13,11 @@ class UpdateAccountForm(forms.ModelForm):
         model = Account
         fields = ('first_name', 'last_name',
                   'profile_pic', 'password1', 'password2')
+
+
+'''
+    
+'''
 
 
 class RegistrationForm(UserCreationForm):
@@ -49,3 +53,10 @@ class ProjectForm(forms.ModelForm):
         widgets = {
             'google_cloud_link': forms.TextInput(attrs={'value': 'https://'}),
         }
+
+
+class TemplateSelectionForm(forms.ModelForm):
+
+    class Meta:
+        model = Account
+        fields = ('portfolio_template',)

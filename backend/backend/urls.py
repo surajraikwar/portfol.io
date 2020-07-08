@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('', include('knowme.urls')),
-    path('logout/', views.logout_view, name='logout')
+    path('logout/', views.logout_view, name='logout'),
 ]
 
 if settings.DEBUG:

@@ -1,7 +1,29 @@
-<h2>Update Profile</h2>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for field in account_update_form %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Update Your Profile</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+        <link rel='stylesheet'
+            href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css'>
+        <link rel='stylesheet'
+            href='https://fonts.googleapis.com/css?family=Handlee|Josefin+Sans:300,600&amp;display=swap'>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="card-wrap">
+                <div class="card border-0 shadow card--welcome is-show" id="welcome">
+                    <div class="card-body">
+                        <h2>Update Profile</h2>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!---    {% for field in account_update_form %}
     <p>
         {{field.label_tag}}
         {{field}}
@@ -17,6 +39,13 @@
     <div style="color: red;">
         <p>{{account_update_form.non_field_errors}}</p>
     </div>
-    {% endif %}
-    <button type="submit">Save changes</button>
-</form>
+    {% endif %}-->
+                            {{ account_update_form.as_p }}
+                            <button type="submit" class="btn-wrap btn btn-lg btn-register js-btn">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
