@@ -19,7 +19,7 @@
     <nav>
       <h2>Hello, {{request.user.first_name}} </h2>
 
-      <h4><a href="{% url 'knowme:add-project' %}">Add Project </a></h4>
+      <h4><a href="{% url 'knowme:projects' %}">My Projects </a></h4>
       <h4><a href="{% url 'knowme:update-account' %}">Update Details </a></h4>
       <h4><a href="{% url 'knowme:templates' %}">Choose your portfolio template </a></h4>
       <h4><a href="{% url 'logout' %}">Logout</a></h4>

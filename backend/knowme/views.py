@@ -4,15 +4,27 @@ from knowme.forms import RegistrationForm, LoginForm, ProjectForm, UpdateAccount
 from django.contrib.auth.decorators import login_required
 from .models import Account, Project
 import imgkit
+from django.http import HttpResponseRedirect
+
+
+'''
+home page -
+guest users gets option to login or signing up
+and after logging in user gets muliple choice of options for creating is Public portfolio
+'''
 
 
 def index(request, *args, **kwargs):
     user = request.user
     if user.is_authenticated:
-        #user_projects = Project.objects.filter(account=user)
         return render(request, 'knowme/index.html', {'pk': user.pk})
     else:
         return render(request, 'knowme/index.html')
+
+
+'''
+Signup with name, email and password
+'''
 
 
 def registration_view(request):
@@ -38,6 +50,11 @@ def registration_view(request):
     return render(request, 'knowme/registration.html', context)
 
 
+'''
+registered user can login with his email and password
+'''
+
+
 def login_view(request):
     context = {}
 
@@ -61,25 +78,22 @@ def login_view(request):
     return render(request, 'knowme/login.html', context)
 
 
+'''
+logged in user can logout
+'''
+
+
 @login_required
 def logout_view(request):
     logout(request)
     return redirect('index')
 
 
-def portfolio(request, pk):
-    #user = get_object_or_404(Account, pk=pk)
-    user = Account.objects.get(pk=pk)
-    user_projects = Project.objects.filter(account=user)
-
-    #user = request.user
-
-    portfolio_template = user.portfolio_template
-
-    return render(request, 'knowme/{}'.format(portfolio_template), {'projects': user_projects, 'account': user})
-    # if user.is_authenticated:
-    #user_projects = Project.objects.filter(account=user)
-    # return render(request, 'knowme/{}'.format(portfolio_template), {'projects': user_projects, 'account': user})
+'''
+user can update or set several set of details
+which are not asked at the time of signing up
+like profile picture orusername
+'''
 
 
 @login_required
@@ -109,9 +123,16 @@ def update_account_details(request):
 
 
 '''
-
-
+functions for performing crud operations
+on the user projects
 '''
+
+
+@login_required
+def user_projects_list(request):
+    user = request.user
+    user_projects = Project.objects.filter(account=user)
+    return render(request, 'knowme/projects.html', {'user_projects': user_projects})
 
 
 @login_required
@@ -128,11 +149,23 @@ def add_projects_to_account(request, *args, **kwargs):
             project.account = request.user
             project.save()
 
-        return redirect('index')
+        return redirect('knowme:projects')
 
     else:
         form = ProjectForm()
     return render(request, 'knowme/add_projects.html', {'form': form})
+
+
+@login_required
+def delete_project(request, pk):
+    project_to_delete = Project.objects.get(pk=pk)
+    project_to_delete.delete()
+    return HttpResponseRedirect('/projects')
+
+
+'''
+publicly accessible portfolio view
+anyone with the user's unique portfolio url can view user's portfolio '''
 
 
 @login_required
@@ -145,3 +178,12 @@ def choose_template(request):
         form.save()
         return redirect('index')
     return render(request, 'knowme/template_selector.html', {'form': form})
+
+
+def portfolio(request, pk):
+    user = Account.objects.get(pk=pk)
+    user_projects = Project.objects.filter(account=user)
+
+    portfolio_template = user.portfolio_template
+
+    return render(request, 'knowme/{}'.format(portfolio_template), {'projects': user_projects, 'account': user})
