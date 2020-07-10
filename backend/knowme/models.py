@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+import uuid
 
 
 class AccountManager(BaseUserManager):
@@ -32,6 +33,7 @@ class AccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
@@ -55,7 +57,7 @@ class Account(AbstractBaseUser):
         ('portfolio_template2.html', 'Template 2')
     )
     portfolio_template = models.CharField(
-        max_length=100, choices=TEMPLATE_CHOICES, blank=True, null=True)
+        max_length=100, choices=TEMPLATE_CHOICES, default='portfolio_template2.html')
 
     def __str__(self):
         return self.email

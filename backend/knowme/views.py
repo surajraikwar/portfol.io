@@ -14,10 +14,10 @@ and after logging in user gets muliple choice of options for creating is Public 
 '''
 
 
-def index(request, *args, **kwargs):
+def index(request):
     user = request.user
     if user.is_authenticated:
-        return render(request, 'knowme/index.html', {'pk': user.pk})
+        return render(request, 'knowme/index.html', {'user': user})
     else:
         return render(request, 'knowme/index.html')
 
