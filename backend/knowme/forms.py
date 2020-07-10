@@ -4,22 +4,6 @@ from knowme.models import Account, Project
 from django.contrib.auth import authenticate
 
 
-class UpdateAccountForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(
-        label='Confirm Password', widget=forms.PasswordInput)
-
-    class Meta:
-        model = Account
-        fields = ('first_name', 'last_name',
-                  'profile_pic', 'password1', 'password2')
-
-
-'''
-    
-'''
-
-
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=60)
 
@@ -42,6 +26,24 @@ class LoginForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError('Invalid Credentials')
+
+
+class UpdateAccountDetailsForm(forms.ModelForm):
+
+    class Meta:
+        model = Account
+        fields = ('first_name', 'last_name',
+                  'profile_pic')
+
+
+class UpdateAccountPasswordForm(forms.ModelForm):
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Confirm Password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = Account
+        fields = ('password1', 'password2')
 
 
 class ProjectForm(forms.ModelForm):

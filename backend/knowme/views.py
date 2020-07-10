@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from knowme.forms import RegistrationForm, LoginForm, ProjectForm, UpdateAccountForm, TemplateSelectionForm
+from knowme.forms import RegistrationForm, LoginForm, ProjectForm, UpdateAccountDetailsForm, UpdateAccountPasswordForm, TemplateSelectionForm
 from django.contrib.auth.decorators import login_required
 from .models import Account, Project
 import imgkit
@@ -92,7 +92,7 @@ def logout_view(request):
 '''
 user can update or set several set of details
 which are not asked at the time of signing up
-like profile picture orusername
+like profile picture or username
 '''
 
 
@@ -100,19 +100,16 @@ like profile picture orusername
 def update_account_details(request):
     user = request.user
     if request.method == 'POST':
-        form = UpdateAccountForm(request.POST, instance=request.user)
+        form = UpdateAccountDetailsForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save(commit=False)
             if 'profile_pic' in request.FILES:
                 user.profile_pic = request.FILES['profile_pic']
-            password = form.cleaned_data.get('password1')
-            user.set_password(password)
             form.save()
-            #update_session_auth_hash(request, user)
             return redirect('index')
 
     else:
-        form = UpdateAccountForm(
+        form = UpdateAccountDetailsForm(
             initial={
                 'first_name': request.user.first_name,
                 'last_name': request.user.last_name,
@@ -123,9 +120,34 @@ def update_account_details(request):
 
 
 '''
+user can change password
+'''
+
+
+@login_required
+def update_account_password(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UpdateAccountPasswordForm(request.POST, instance=request.user)
+        if form.is_valid():
+
+            password = form.cleaned_data.get('password1')
+            user.set_password(password)
+            form.save()
+            return redirect('index')
+
+    else:
+        form = UpdateAccountPasswordForm()
+
+    return render(request, 'knowme/update_password.html', {'password_update_form': form})
+
+
+'''
 functions for performing crud operations
 on the user projects
 '''
+
+# getting all projects of logged in user
 
 
 @login_required
@@ -133,6 +155,8 @@ def user_projects_list(request):
     user = request.user
     user_projects = Project.objects.filter(account=user)
     return render(request, 'knowme/projects.html', {'user_projects': user_projects})
+
+# adding new project to portfolio
 
 
 @login_required
@@ -155,6 +179,8 @@ def add_projects_to_account(request, *args, **kwargs):
         form = ProjectForm()
     return render(request, 'knowme/add_projects.html', {'form': form})
 
+# deleting existing project
+
 
 @login_required
 def delete_project(request, pk):
@@ -164,8 +190,10 @@ def delete_project(request, pk):
 
 
 '''
-publicly accessible portfolio view
-anyone with the user's unique portfolio url can view user's portfolio '''
+choosing a portfolio template from among the set of given templates
+user portfolio will be rendered in the current chosen template for everyone
+if not choosen any template a default template(template 2) is rendered
+'''
 
 
 @login_required
@@ -178,6 +206,11 @@ def choose_template(request):
         form.save()
         return redirect('index')
     return render(request, 'knowme/template_selector.html', {'form': form})
+
+
+'''
+publicly accessible portfolio view
+anyone with the user's unique portfolio url can view user's portfolio '''
 
 
 def portfolio(request, pk):
