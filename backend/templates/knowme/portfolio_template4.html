@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{{account.first_name}}'s KnowMe</title>
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css'>
+		<link rel="stylesheet" href="{% static 'portfolio_template1.css' %}">
+
+	</head>
+
+	<body>
+		<!-- partial:index.partial.html -->
+
+		<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+			<button class="btn btn-primary arrow up" onclick="topFunction()" id="scrollBtn" title="Top"> <i
+					class="fas fa-arrow-circle-up fa-2x"></i></button>
+
+			<!--navigation-->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+				<div class="col-md-6">
+					<img src="{% get_media_prefix %}{{account.profile_pic}}" alt="avatar" class="profile-pic"
+						height='50' width="50">
+				</div>
+				<a class="navbar-brand" style="color:#9A9DA0;" href="#">{{account.first_name}} {{account.last_name}}</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+					aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+
+			</nav>
+			<!-- End Navigation -->
+
+
+
+			<!-- Begin projects -->
+			<section id="portfolio">
+				<div class="container col-xd-12">
+					<h1> PROJECTS</h1>
+					<div class="row row-deck">
+						<div class="card-deck">
+
+							{% for project in projects %}
+							<div class="card border-primary">
+
+								<img class="card-img-top"
+									src="{% get_media_prefix %}knowme/project_snaps/{{project.project_name}}.jpg"
+									alt="">
+								<div class="card-body">
+									<h4 class="card-title text-center">{{project.project_name}}</h4>
+									<p class="card-text">{{project.description}}</p>
+									<div class="text-center">
+
+										<a class="btn btn-primary" href="{{project.google_cloud_link}}"
+											target="_blank"><i class="fab fa-github"></i> View Project</a>
+									</div>
+								</div>
+
+							</div>
+							{% endfor %}
+
+		</body>
+
+</html>

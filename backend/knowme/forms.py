@@ -62,3 +62,7 @@ class TemplateSelectionForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ('portfolio_template',)
+
+        widgets = {
+            'portfolio_template': forms.RadioSelect()
+        }

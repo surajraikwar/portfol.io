@@ -54,10 +54,12 @@ class Account(AbstractBaseUser):
 
     TEMPLATE_CHOICES = (
         ('portfolio_template1.html', 'Template 1'),
-        ('portfolio_template2.html', 'Template 2')
+        ('portfolio_template2.html', 'Template 2'),
+        ('portfolio_template3.html', 'Template 3'),
+        ('portfolio_template4.html', 'Template 4'),
     )
-    portfolio_template = models.CharField(
-        max_length=100, choices=TEMPLATE_CHOICES, default='portfolio_template2.html')
+    portfolio_template = models.CharField('',
+                                          max_length=100, choices=TEMPLATE_CHOICES, default='portfolio_template2.html')
 
     def __str__(self):
         return self.email

@@ -24,7 +24,7 @@
                         <h2>Choose your Portfolio template</h2>
                         <form method="post">
                             {% csrf_token %}
-                            <table>{{ form.as_table }}</table>
+                            <table>{{ form.as_p }}</table>
                             <button type="submit">Choose this template</button>
                         </form>
                     </div>

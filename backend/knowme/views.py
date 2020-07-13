@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Account, Project
 import imgkit
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 '''
@@ -38,6 +39,7 @@ def registration_view(request):
 
             account = authenticate(email=email, password=password)
             login(request, account)
+            messages.success(request, 'Registration Successfull')
             return redirect('index')
 
         else:
@@ -86,6 +88,7 @@ logged in user can logout
 @login_required
 def logout_view(request):
     logout(request)
+    messages.success(request, 'Successfully logged out', extra_tags='alert')
     return redirect('index')
 
 
@@ -106,6 +109,7 @@ def update_account_details(request):
             if 'profile_pic' in request.FILES:
                 user.profile_pic = request.FILES['profile_pic']
             form.save()
+            messages.success(request, 'Your details was updated successfully!')
             return redirect('index')
 
     else:
@@ -134,6 +138,8 @@ def update_account_password(request):
             password = form.cleaned_data.get('password1')
             user.set_password(password)
             form.save()
+            messages.success(
+                request, 'Your password was updated successfully!')
             return redirect('index')
 
     else:
@@ -172,6 +178,7 @@ def add_projects_to_account(request, *args, **kwargs):
                             './media/knowme/project_snaps/{}.jpg'.format(project.project_name), options=options)
             project.account = request.user
             project.save()
+            messages.success(request, 'Project')
 
         return redirect('knowme:projects')
 
@@ -186,6 +193,7 @@ def add_projects_to_account(request, *args, **kwargs):
 def delete_project(request, pk):
     project_to_delete = Project.objects.get(pk=pk)
     project_to_delete.delete()
+    messages.success(request, 'Project deleted successfully')
     return HttpResponseRedirect('/projects')
 
 

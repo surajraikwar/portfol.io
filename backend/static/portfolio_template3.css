@@ -1,0 +1,449 @@
+/* font families */
+@import url("https://fonts.googleapis.com/css?family=Nanum+Pen+Script|Raleway");
+/* font-family: 'Raleway', sans-serif; */
+/* font-family: 'Nanum Pen Script', cursive; */
+
+/* CSS Variables */
+:root {
+  --blueDark: #0f2549;
+  --blueMedium: #1d4f72;
+  --blueBright: #0a83d4;
+  --blueGray: #668cc8;
+  --whiteOff: #e4f1fc;
+  --grayDark: #9e9ea0;
+  --grayLight: #dee0e0;
+  --blueSkyShirt: #abb6c1;
+  /* --orangeFlowerShirt: #e39578; */
+  /* --greenCravat: #859e62; */
+  /* --yellowFlower: #f9bc58; */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  font-family: "Raleway", sans-serif;
+  font-size: 10px;
+  color: var(--blueDark);
+  background-color: var(--whiteOff);
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 5px 0 0 0;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+h5 {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+/*LVFHA LoVe Fears HAte*/
+#menu a:hover,
+#hamburger:hover,
+#webIcons i:hover {
+  color: var(--grayDark);
+}
+
+a:active {
+  background: var(--whiteOff);
+}
+
+/*Container Main*/
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.centralReservation {
+  flex: 4 1 100%;
+  max-width: 960px;
+  text-align: center;
+}
+
+.sidebars {
+  flex: 1 1 0%;
+  background-color: var(--grayDark);
+}
+
+.sectionBreaks i {
+  color: var(--blueMedium);
+}
+
+@media all and (max-width: 1100px) {
+  .centralReservation {
+    flex: 4 0 100%;
+  }
+  .sidebars {
+    flex: 1 1 0;
+  }
+}
+
+@media all and (min-width: 475px) {
+  .sectionBreaks::before {
+    display: inline-block;
+    margin: 0px 20px 13px 0px;
+    border: 100px;
+    height: 5px;
+    content: " ";
+    background-color: var(--blueMedium);
+    width: 120px;
+  }
+
+  .sectionBreaks::after {
+    display: inline-block;
+    margin: 0px 0px 13px 20px;
+    height: 5px;
+    content: " ";
+    background-color: var(--blueMedium);
+    width: 120px;
+  }
+}
+
+/*Container Nav Bar
+.navBar {
+  background: var(--blueMedium);
+  position: fixed;
+  min-width: 100%;
+  z-index: 1;
+  max-height: 4rem;
+}
+
+.centralNavBar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 960px;
+}*/
+
+@media all and (min-width: 1000px) {
+  .centralNavBar {
+    margin-left: 2vw;
+  }
+}
+
+@media all and (min-width: 1050px) {
+  .centralNavBar {
+    margin-left: 5vw;
+  }
+}
+
+@media all and (min-width: 1100px) {
+  .centralNavBar {
+    margin-left: 8vw;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .centralNavBar {
+    margin-left: 11vw;
+  }
+}
+
+@media all and (min-width: 1300px) {
+  .centralNavBar {
+    margin-left: 13vw;
+  }
+}
+
+@media all and (min-width: 1400px) {
+  .centralNavBar {
+    margin-left: 15vw;
+  }
+}
+
+@media all and (min-width: 1500px) {
+  .centralNavBar {
+    margin-left: 17vw;
+  }
+}
+
+/*Nav Bar Menu Toggle*/
+#menu {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+#menu > li > a,
+#hamburger {
+  text-decoration: none;
+  color: var(--grayLight);
+  opacity: 0.7;
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+#hamburger {
+  font-size: 3rem;
+}
+
+#menuToggle,
+.labelToggle {
+  display: none;
+  margin: 0;
+}
+
+@media all and (max-width: 800px) {
+  #menu {
+    flex-direction: column;
+    margin: 0;
+    visibility: hidden;
+  }
+
+  #menu > li {
+    width: 110px;
+    background: var(--blueMedium);
+  }
+
+  #menuToggle:checked + #menu {
+    visibility: visible;
+  }
+
+  .labelToggle {
+    display: block;
+    cursor: pointer;
+  }
+}
+
+/*Section About*/
+#about {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 100px 15px 0px 15px;
+}
+
+#aboutMe {
+  flex: 250px;
+}
+
+#picture {
+  flex: 250px;
+}
+
+#imgMe {
+  width: 250px;
+  color: var(--whiteOff);
+  border-radius: 50%;
+}
+
+@media all and (max-width: 800px) {
+  #about {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #about {
+    margin: 75px 15px;
+  }
+}
+
+/*Section Portfolio*/
+#portfolio {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 5px;
+}
+
+#portfolioPorts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 960px;
+}
+
+.ports {
+  flex: 1 1 33%;
+  max-width: 300px;
+  margin: 5px;
+}
+
+.ports > a > img {
+  /* To remove whitespace below img, use display: block; */
+  display: block;
+  max-width: 300px;
+  border: 2px solid var(--blueSkyShirt);
+  border-radius: 2%;
+}
+
+/*Section Contact*/
+#contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: left;
+  margin: 25px 15px;
+}
+
+#chitchat {
+  flex: 300px;
+  max-width: 300px;
+}
+
+#form {
+  flex: 300px;
+  max-width: 300px;
+}
+
+#yourName,
+#yourEmail,
+#yourTel,
+#yourMessage {
+  max-width: 300px;
+  height: 75px;
+  color: var(--blueMedium);
+  background: none;
+  border: none;
+  border-bottom: solid 1px var(--blueMedium);
+}
+
+form > div {
+  position: relative;
+}
+
+form > div > label {
+  position: absolute;
+  top: 25px;
+  left: 1px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+input:focus + label {
+  top: 0;
+  color: var(--blueBright);
+}
+
+form input:valid + label {
+  top: 0;
+  color: var(--blueBright);
+}
+
+textarea {
+  resize: none;
+  min-width: 300px;
+  min-height: 200px;
+  padding-top: 20px;
+}
+
+textarea:focus + label {
+  top: 0;
+  color: var(--blueBright);
+}
+
+textarea:valid + label {
+  top: 0;
+  color: var(--blueBright);
+}
+
+.button {
+  margin: 10px 0px;
+  color: var(--blueMedium);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: var(--grayDark);
+  background: var(--blueMedium);
+}
+
+.button:active {
+  background: var(--whiteOff);
+  color: var(--grayDark);
+}
+
+/*Container Penultimate*/
+.penultimate {
+  min-width: 100%;
+  background-color: var(--blueGray);
+}
+
+.centralPenultimate {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 550px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+#aboutPage,
+#interweb {
+  flex: 275px;
+}
+
+#aboutPage > h3,
+#interweb > h3 {
+  margin: 5px 0;
+}
+
+#aboutPage > h4 {
+  color: var(--whiteOff);
+  margin: 15px 0;
+}
+
+#aboutPage > h5 {
+  color: var(--grayLight);
+  line-height: 1;
+  margin: 5px 0;
+}
+
+#webIcons {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+#webIcons > li > a {
+  display: flex;
+  background-color: var(--blueGray);
+  color: var(--grayLight);
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+/*Container Footer*/
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  font-size: 1rem;
+  color: var(--grayLight);
+  background: var(--blueMedium);
+}
+
+.footer > h5 {
+  margin: 10px 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.5rem;
+}
+
+@media screen and (max-width: 350px) {
+  .navBar,
+  .main,
+  .centralReservation,
+  .penultimate,
+  .footer {
+    max-width: 100%;
+  }
+}
