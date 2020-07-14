@@ -174,6 +174,7 @@ def add_projects_to_account(request, *args, **kwargs):
         form = ProjectForm(request.POST)
         if form.is_valid:
             project = form.save(commit=False)
+            # when user adds a project, a snapshot of their code on GCP get saved into database
             imgkit.from_url(project.google_cloud_link,
                             './media/knowme/project_snaps/{}.jpg'.format(project.project_name), options=options)
             project.account = request.user
@@ -198,7 +199,7 @@ def delete_project(request, pk):
 
 
 '''
-choosing a portfolio template from among the set of given templates
+choosing a portfolio template from among the set of given templates,
 user portfolio will be rendered in the current chosen template for everyone
 if not choosen any template a default template(template 2) is rendered
 '''

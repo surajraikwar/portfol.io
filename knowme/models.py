@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 import uuid
 
+'''
+Overridden the django's built-in Auth User Model with custom user model,
+in which email is required for logging in instead of username.
+'''
+
 
 class AccountManager(BaseUserManager):
     def create_user(self, first_name, last_name, email, password=None):
@@ -69,6 +74,8 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+# users can add projects to their account
 
 
 class Project(models.Model):
