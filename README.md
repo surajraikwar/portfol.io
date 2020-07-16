@@ -17,7 +17,7 @@ The live version can be found [here](https://surajraikwar.herokuapp.com)
         sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib
 ```
 
-    create database ```knowme```
+    create database 'knowme'
 
 ```
         sudo su - postgres
