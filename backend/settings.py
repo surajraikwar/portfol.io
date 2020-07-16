@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'knowme'
+    'knowme',
+    'wkhtmltopdf'
 ]
 AUTH_USER_MODEL = 'knowme.Account'
 

@@ -11,3 +11,4 @@ whitenoise==5.1.0
 dj-database-url==0.5.0
 django-heroku==0.3.1
 imgkit==1.0.2
+django-wkhtmltopdf==3.3.0
