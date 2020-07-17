@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from knowme.forms import RegistrationForm, LoginForm, ProjectForm, UpdateAccountDetailsForm, UpdateAccountPasswordForm, TemplateSelectionForm
 from django.contrib.auth.decorators import login_required
 from .models import Account, Project
-import imgkit
+#import imgkit
+from selenium import webdriver
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
@@ -169,14 +170,22 @@ def user_projects_list(request):
 def add_projects_to_account(request, *args, **kwargs):
 
     form = ProjectForm()
-    options = {'crop-h': '700', 'quiet': ''}
+    #options = {'crop-h': '700', 'quiet': ''}
     if request.POST:
         form = ProjectForm(request.POST)
         if form.is_valid:
             project = form.save(commit=False)
             # when user adds a project, a snapshot of their code on GCP get saved into database
+            driver = webdriver.PhantomJS()
+            driver.set_window_size(1024, 68)
+            driver.get(project.google_cloud_link)
+            driver.save_screenshot(
+                './media/knowme/project_snaps/{}.jpg'.format(project.project_name))
+
+            '''
             imgkit.from_url(project.google_cloud_link,
                             './media/knowme/project_snaps/{}.jpg'.format(project.project_name), options=options)
+            '''
             project.account = request.user
             project.save()
             messages.success(request, 'Project')
