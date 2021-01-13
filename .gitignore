@@ -2,3 +2,6 @@
 bin/
 lib/
 pyvenv.cfg
+portfol_io/config.ini
+staticfiles/
+ghostdriver.log
