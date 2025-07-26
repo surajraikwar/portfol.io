@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="200" height="50">
+  <!-- Background -->
+  <rect width="200" height="50" fill="none"/>
+  
+  <!-- Icon -->
+  <g transform="translate(10,10)">
+    <!-- Code brackets -->
+    <path d="M 5 10 L 0 20 L 5 30" fill="none" stroke="#007bff" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 25 10 L 30 20 L 25 30" fill="none" stroke="#007bff" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Center dot -->
+    <circle cx="15" cy="20" r="2" fill="#007bff"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="50" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333">
+    Dev<tspan fill="#007bff">Showcase</tspan>
+  </text>
+</svg>

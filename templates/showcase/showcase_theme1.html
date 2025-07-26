@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+{% load static %}
+{% load custom_filters %}
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{account.first_name}} {{account.last_name}} - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'showcase_theme1.css' %}">
+
+  </head>
+
+  <body>
+
+    <body>
+      <div class="wrapper">
+        <div class="projects">
+          <div class="project theme-00">
+            <div class="project__graphics">
+              <img class="project__image" src="{% get_media_prefix %}{{account.profile_pic}}" alt="" />
+              <div class="pixel-container">
+                <div class="pixel pixel-01 is-small"></div>
+                <div class="pixel pixel-02 is-large"></div>
+                <div class="pixel pixel-03 is-medium"></div>
+                <div class="pixel pixel-04 is-medium"></div>
+                <div class="pixel pixel-05 is-small"></div>
+                <div class="pixel pixel-06 is-large"></div>
+                <div class="pixel pixel-07 is-small"></div>
+                <div class="pixel pixel-08 is-medium"></div>
+                <div class="pixel pixel-09 is-medium"></div>
+                <div class="pixel pixel-10 is-small"></div>
+                <div class="pixel pixel-11 is-medium"></div>
+                <div class="pixel pixel-12 is-small"></div>
+                <div class="pixel pixel-13 is-small"></div>
+                <div class="pixel pixel-14 is-medium"></div>
+                <div class="pixel pixel-15 is-small"></div>
+                <div class="pixel pixel-16 is-small"></div>
+                <div class="pixel pixel-17 is-large"></div>
+                <div class="pixel pixel-18 is-small"></div>
+                <div class="pixel pixel-19 is-medium"></div>
+                <div class="pixel pixel-20 is-large"></div>
+                <div class="pixel pixel-21 is-medium"></div>
+                <div class="pixel pixel-22 is-small"></div>
+              </div>
+            </div>
+            <h2 class="project__title">Hi, my name is {{account.first_name}} {{account.last_name}}!</h2>
+            <p class="project__subtitle">{{account.bio}}</p>
+            
+            {% if skills_list %}
+            <div class="skills-container">
+              {% for skill in skills_list %}
+                <span class="skill-tag">{{ skill }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="social-links">
+              {% if account.github_url %}
+                <a href="{{ account.github_url }}" target="_blank"><i class="fab fa-github"></i></a>
+              {% endif %}
+              {% if account.linkedin_url %}
+                <a href="{{ account.linkedin_url }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+              {% endif %}
+              {% if account.twitter_url %}
+                <a href="{{ account.twitter_url }}" target="_blank"><i class="fab fa-twitter"></i></a>
+              {% endif %}
+              {% if account.website_url %}
+                <a href="{{ account.website_url }}" target="_blank"><i class="fas fa-globe"></i></a>
+              {% endif %}
+            </div>
+          </div>
+
+          {% for project in projects %}
+
+          <div class="project theme-01">
+            <div class="project__graphics">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                class="project__loader" x="0" y="0" viewBox="0 0 176.1 176.1" enable-background="new 0 0 176.1 176.1"
+                xml:space="preserve">
+                <circle fill="transparent" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="88.1" cy="88.1"
+                  r="87.1" />
+              </svg>
+
+              {% if project.project_image %}
+                <img class="project__image" src="{{ project.project_image.url }}" alt="{{ project.project_name }}" width="250" height="220" />
+              {% else %}
+                <div class="project__image-placeholder">
+                  <i class="fas fa-project-diagram"></i>
+                </div>
+              {% endif %}
+              <div class="pixel-container">
+                <div class="pixel pixel-01 is-small"></div>
+                <div class="pixel pixel-02 is-large"></div>
+                <div class="pixel pixel-03 is-medium"></div>
+                <div class="pixel pixel-04 is-medium"></div>
+                <div class="pixel pixel-05 is-small"></div>
+                <div class="pixel pixel-06 is-large"></div>
+                <div class="pixel pixel-07 is-small"></div>
+                <div class="pixel pixel-08 is-medium"></div>
+                <div class="pixel pixel-09 is-medium"></div>
+                <div class="pixel pixel-10 is-small"></div>
+                <div class="pixel pixel-11 is-medium"></div>
+                <div class="pixel pixel-12 is-small"></div>
+                <div class="pixel pixel-13 is-small"></div>
+                <div class="pixel pixel-14 is-medium"></div>
+                <div class="pixel pixel-15 is-small"></div>
+                <div class="pixel pixel-16 is-small"></div>
+                <div class="pixel pixel-17 is-large"></div>
+                <div class="pixel pixel-18 is-small"></div>
+                <div class="pixel pixel-19 is-medium"></div>
+                <div class="pixel pixel-20 is-large"></div>
+                <div class="pixel pixel-21 is-medium"></div>
+                <div class="pixel pixel-22 is-small"></div>
+              </div>
+            </div>
+            <h2 class="project__title">{{project.project_name}}</h2>
+            
+            {% if project.tech_stack %}
+            <div class="tech-stack">
+              {% for tech in project.tech_stack|split:"," %}
+                <span class="tech-badge">{{ tech|trim }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            
+            <p class="button-container">
+              {% if project.github_link %}
+              <a href="{{project.github_link}}" class="button" target="_blank">
+                <span class="button__part button__part--left"></span>
+                <span class="button__part button__part--mid"></span>
+                <span class="button__part button__part--right"></span>
+                <span class="button__text"><i class="fab fa-github"></i> GitHub</span>
+              </a>
+              {% endif %}
+              {% if project.live_demo_link %}
+              <a href="{{project.live_demo_link}}" class="button" target="_blank">
+                <span class="button__part button__part--left"></span>
+                <span class="button__part button__part--mid"></span>
+                <span class="button__part button__part--right"></span>
+                <span class="button__text"><i class="fas fa-external-link-alt"></i> Live Demo</span>
+              </a>
+              {% endif %}
+            </p>
+            <p class="project__subtitle">{{project.description}}</p>
+
+          </div>
+          {% endfor %}
+
+        </div>
+    </body>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSRulePlugin.min.js'></script>
+    <script src="{% static 'showcase_theme1.js' %}"></script>
+
+  </body>
+  <script src="{% static 'showcase_theme1.js' %}"></script>
+
+</html>

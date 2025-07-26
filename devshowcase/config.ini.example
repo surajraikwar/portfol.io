@@ -1,0 +1,8 @@
+[secret]
+key = your-secret-key-here
+
+[database]
+name = portfol_io_db
+user = postgres
+password = postgres
+host = localhost

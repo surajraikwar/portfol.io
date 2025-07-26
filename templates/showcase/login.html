@@ -1,0 +1,43 @@
+{% extends 'devshowcase/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login - DevShowcase{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-sign-in-alt"></i> Login to Your Account</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        {% if login_form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ login_form.non_field_errors }}
+                            </div>
+                        {% endif %}
+                        
+                        {{ login_form|crispy }}
+                        
+                        <button type="submit" class="btn btn-primary btn-block mt-4">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+                    
+                    <hr>
+                    
+                    <p class="text-center mb-0">
+                        Don't have an account? 
+                        <a href="{% url 'showcase:registration' %}">Register here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

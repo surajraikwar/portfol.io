@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>{{account.first_name}}'s KnowMe</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Portfolio for Tom Corbin, web developer, working with javascript, html, and css.">
+    <script src="https://use.fontawesome.com/44588ed638.js"></script>
+    <link rel="stylesheet" href="{% static 'showcase_theme3.css' %}">
+
+  </head>
+
+  <body>
+    <!-- partial:index.partial.html -->
+    <!-- Container Nav Bar -->
+    <!--<div class="navBar">
+      <div class="centralNavBar">
+        <label for="menuToggle" class="labelToggle">
+          <i id="hamburger" class="fa fa-bars fa-5x"></i>
+        </label>
+        <input type="checkbox" id="menuToggle">-->
+    <!--<ul id="menu">
+      <li>
+        <a href="#aboutSection">About</a>
+      </li>
+      <li>
+        <a href="#portfolioSection">Portfolio</a>
+      </li>
+      <li>
+        <a href="#contactSection">Contact</a>
+      </li>
+    </ul>
+    </div>
+    </div>-->
+
+    <!-- Container Main -->
+    <div class="main">
+      <!--<div class="sidebars" id="sideLeft">
+      </div>-->
+      <div class="centralReservation">
+
+        <!-- About Section -->
+        <div>
+          <h1>
+            <a id="aboutSection" name="about"></a>
+          </h1>
+        </div>
+        <div id="about">
+          <div id="aboutMe">
+            <h1>{{account.first_name}} {{account.last_name}}</h1>
+            <!--<h3> Web developer - JavaScript</h3>-->
+            <div class="sectionBreaks" id="aboutBreaks">
+              <i class="fa fa-code fa-5x"></i>
+            </div>
+            <!--<h3> Coder - Father - Learner</h3>-->
+          </div>
+          <div id="picture">
+            <img id="imgMe" src="{% get_media_prefix %}{{account.profile_pic}}" alt="My photo">
+          </div>
+        </div>
+
+        <!-- Portfolio Section -->
+        <div>
+          <h1>
+            <a name="portfolioSection"></a>My Projects</h1>
+        </div>
+        <div id="portfolio">
+          <div class="sectionBreaks">
+            <i class="fa fa-code fa-5x"></i>
+          </div>
+          <div id="portfolioPorts">
+            {% for project in projects %}
+            <div class="ports">
+              <h5>{{project.project_name}}</h5>
+              <a href="{{project.google_cloud_link}}" target="_blank">
+                <img style="width: 300px; height: 180px;"
+                  src="{% get_media_prefix %}showcase/project_snaps/{{project.project_name}}.jpg" alt="Project Link">
+              </a>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>

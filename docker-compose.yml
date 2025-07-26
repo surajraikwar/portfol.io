@@ -1,31 +1,29 @@
-version: '3'
+version: '3.8'
 
 services:
-  web:
+  db:
+    image: postgres:14-alpine
     restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+
+  web:
     build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py makemigrations --noinput \
+                      && python manage.py migrate --noinput \
+                      && gunicorn devshowcase.wsgi:application --bind 0.0.0.0:8000 --workers 3"
     volumes:
       - .:/portfolio
     ports:
       - "8000:8000"
     depends_on:
       - db
-    links:
-      - db:db
-  db:
-    restart: always
-    image: postgres:12.0-alpine
-    ports:
-      - "5432:5432"
-    environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-      #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
-  postgres_data:
-  
+  db_data:
